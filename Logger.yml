@@ -40,47 +40,6 @@ web_server:
 
 captive_portal:
 
-i2c:
-  sda: GPIO4 #D2
-  scl: GPIO5 #D1
-  scan: true
-  #id: bus_a    
-
-
-
-apds9960:
-  address: 0x39
-  update_interval: 1s
-  
-
-
-
-
-external_components:
-  - source:
-      type: git
-      url: https://github.com/marianomd/acs712-esphome
-    components: [acs712]
-
-sensor:
-  - platform: acs712
-    pin: 0
-    voltage: 3.3
-    adc_bits: 1023
-    mv_per_amp: 170
-    line_voltage: 230
-    noisemV: 43
-    current_sensor:
-      name: "Amperes"
-    power_sensor:
-      name: "Watts"
-
-
-
-
-  - platform: apds9960
-    type: PROXIMITY
-    name: "APDS9960 Proximity Channel"
     
 binary_sensor:
   - platform: apds9960
