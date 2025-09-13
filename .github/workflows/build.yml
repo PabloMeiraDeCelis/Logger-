@@ -3,7 +3,7 @@ name: Build ESPHome firmware
 on:
   push:
     paths:
-      - '**.yml'     # solo corre cuando cambias YMLs
+      - '**.yaml'     # solo corre cuando cambias YAMLs
   workflow_dispatch:   # permite ejecutarlo manualmente
 
 jobs:
@@ -22,10 +22,10 @@ jobs:
       - name: Install ESPHome
         run: pip install esphome==2025.5.2
 
-      - name: Compile all yml configs
+      - name: Compile all yaml configs
         run: |
           mkdir -p build_output
-          for file in $(find . -name "*.yml"); do
+          for file in $(find . -name "*.yaml"); do
             echo "Compiling $file ..."
             esphome compile "$file"
             # mueve los .bin generados al directorio de salida
