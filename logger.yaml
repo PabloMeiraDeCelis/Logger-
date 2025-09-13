@@ -8,13 +8,8 @@ esp8266:
 
 # Enable logging
 logger:
-  level: DEBUG
+  level: WARN
 
-# Enable Home Assistant API
-api:
-  encryption:
-    key: "Vhry52t8l3JJCInErPXCNDkohD9EnDgwwizROZzTSM4="
-  reboot_timeout: 0s
 ota:
   - platform: esphome
     password: "12345678"
