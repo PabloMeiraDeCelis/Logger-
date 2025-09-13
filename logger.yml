@@ -18,6 +18,7 @@ ota:
   - platform: esphome
     password: "12345678"
 
+
 wifi:
   networks:
     - ssid: Mini_Alejandria
