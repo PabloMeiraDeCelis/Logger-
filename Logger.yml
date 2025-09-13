@@ -1,6 +1,6 @@
 esphome:
-  name: sensor-acs712
-  friendly_name: Sensor acs712
+  name: Logger
+  friendly_name: Logger
 
 esp8266:
   board: esp01_1m
@@ -16,13 +16,10 @@ api:
   reboot_timeout: 0s
 ota:
   - platform: esphome
-    password: "855af5dae8c171277dcefd7d88727e3b"
+    password: "12345678"
 
 wifi:
   networks:
-    - ssid: Alejandria_rpt_2.4GHz
-      password: Qwertyuiop0987654321
-      priority: 10   # Más prioridad
     - ssid: Mini_Alejandria
       password: Qwert54321
       priority: 5    # Menos prioridad
@@ -31,7 +28,7 @@ wifi:
   # crea su propio AP (útil para emergencias).
  
   ap:
-    ssid: "Sensor-Acs712 Fallback Hotspot"
+    ssid: "Logger"
     password: "12345678"
 
 web_server: 
