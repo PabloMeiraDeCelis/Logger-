@@ -1,0 +1,95 @@
+esphome:
+  name: sensor-acs712
+  friendly_name: Sensor acs712
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+  level: DEBUG
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "Vhry52t8l3JJCInErPXCNDkohD9EnDgwwizROZzTSM4="
+  reboot_timeout: 0s
+ota:
+  - platform: esphome
+    password: "855af5dae8c171277dcefd7d88727e3b"
+
+wifi:
+  networks:
+    - ssid: Alejandria_rpt_2.4GHz
+      password: Qwertyuiop0987654321
+      priority: 10   # Más prioridad
+    - ssid: Mini_Alejandria
+      password: Qwert54321
+      priority: 5    # Menos prioridad
+  reboot_timeout: 0s  # Desactiva el reinicio (o usa un valor mayor, ej. 1h)
+  # Si no encuentra ninguna de las redes anteriores,
+  # crea su propio AP (útil para emergencias).
+ 
+  ap:
+    ssid: "Sensor-Acs712 Fallback Hotspot"
+    password: "12345678"
+
+web_server: 
+  port: 80
+  ota: true
+  local: true
+
+
+
+captive_portal:
+
+i2c:
+  sda: GPIO4 #D2
+  scl: GPIO5 #D1
+  scan: true
+  #id: bus_a    
+
+
+
+apds9960:
+  address: 0x39
+  update_interval: 1s
+  
+
+
+
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/marianomd/acs712-esphome
+    components: [acs712]
+
+sensor:
+  - platform: acs712
+    pin: 0
+    voltage: 3.3
+    adc_bits: 1023
+    mv_per_amp: 170
+    line_voltage: 230
+    noisemV: 43
+    current_sensor:
+      name: "Amperes"
+    power_sensor:
+      name: "Watts"
+
+
+
+
+  - platform: apds9960
+    type: PROXIMITY
+    name: "APDS9960 Proximity Channel"
+    
+binary_sensor:
+  - platform: apds9960
+    direction: LEFT
+    name: "APDS960 Left Movement"
+    
+  - platform: apds9960
+    direction: RIGHT
+    name: "APDS960 Right Movement"
