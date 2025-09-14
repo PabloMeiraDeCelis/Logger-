@@ -38,3 +38,23 @@ web_server:
 captive_portal:
 
     
+sensor:
+
+# --- contador pulsos velocidad ventilador ---
+  - platform: pulse_counter
+    pin: 18
+    name: "RPM Fan Aire Nuevo"
+    id: RPM_aire_nuevo
+    unit_of_measurement: "RPM"
+    update_interval: 1s
+    filters:
+      - multiply: 0.60  # Si 2 pulsos por vuelta, 1s → 30 = RPM aproximado
+
+  - platform: pulse_counter
+    pin: 19
+    name: "RPM Fan Aire recir 1"
+    id: RPM_aire_recir_1
+    unit_of_measurement: "RPM"
+    update_interval: 1s
+    filters:
+      - multiply: 0.60  # Si 2 pulsos por vuelta, 1s → 30 = RPM aproximado
